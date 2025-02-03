@@ -1,0 +1,39 @@
+/* Carousel Styling */
+.custom-carousel {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .carousel-image {
+    object-fit: cover;
+    width: 100%;
+    height: 70vh;
+  }
+  
+  /* Grid Image Styling */
+  .image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .grid-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .grid-image:hover {
+    transform: scale(1.2);
+  }
+  
