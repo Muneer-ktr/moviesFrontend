@@ -8,3 +8,7 @@ export const allmovies = async()=>{
 export const addMovies = async(reqBody,reqHeader)=>{
     return await commonAPI('POST'`${baseURL}/movies/addmovies`,reqBody,reqHeader)
 }
+
+export const getMoviedetails=async(id)=>{
+    return await commonAPI('GET',`${baseURL}/movies/getMovieById/${id}`,"","")
+}

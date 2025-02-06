@@ -12,6 +12,7 @@ function Body() {
     try {
       const response = await allmovies();
       setMovies(response.data);
+      
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
@@ -73,7 +74,7 @@ function Body() {
         {movies?.map((item, index) => (
           <Col key={index} xs={12} sm={6} md={4} className="mb-4">
             <div className="image-container">
-              <Link to="/movies">
+              <Link to={`/getmoviesbyid/${item._id}`}>
                 <img
                   className="grid-image"
                   src={`${baseURL}/uploads/${item.poster}`}

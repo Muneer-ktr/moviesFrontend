@@ -13,8 +13,8 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Body/>}/>
-        <Route path='/movies' element={<Movies/>}/>
-        <Route path='form' element={<Form/>}/>
+        <Route path='/getmoviesbyid/:id' element={<Movies/>}/>
+        <Route path='/form' element={<Form/>}/>
       </Routes>     
       <Footer/>
     </div>
