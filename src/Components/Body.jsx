@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel, Col, Row, Container } from 'react-bootstrap';
-import {data,  Link } from 'react-router-dom';
-import './Body.css'; 
+import { Link } from 'react-router-dom'; 
+import './Body.css';
 import { allmovies } from '../services/Allapi';
 import { baseURL } from '../services/BaseURL';
 
 function Body() {
-  const [movies,setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
 
-    const getMovies=async()=>{
-      const response=await allmovies()
-      setMovies(response.data)
-      console.log(response);
+  const getMovies = async () => {
+    try {
+      const response = await allmovies();
+      setMovies(response.data);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
     }
-    
-    useEffect(()=>{
-      getMovies()
-    },[])
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <Container fluid>
       {/* Carousel Section */}
@@ -66,14 +70,14 @@ function Body() {
 
       {/* Grid Section */}
       <Row className="px-3">
-        {movies?.map((item) => (
-          <Col xs={12} sm={6} md={4} className="mb-4">
+        {movies?.map((item, index) => (
+          <Col key={index} xs={12} sm={6} md={4} className="mb-4">
             <div className="image-container">
-              <Link to={'/movies'}>
+              <Link to="/movies">
                 <img
                   className="grid-image"
                   src={`${baseURL}/uploads/${item.poster}`}
-                  alt= "Scenic View"
+                  alt={item.title || "Movie Poster"} 
                 />
               </Link>
             </div>

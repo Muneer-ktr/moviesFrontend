@@ -15,10 +15,7 @@ function App() {
         <Route path='/' element={<Body/>}/>
         <Route path='/movies' element={<Movies/>}/>
         <Route path='form' element={<Form/>}/>
-      </Routes>
-
-     
-
+      </Routes>     
       <Footer/>
     </div>
   )

@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 function Form() {
   const [casts, setCasts] = useState([{ id: 1, name: '', file: null }]);
+  const [movie, setMovie] = useState({
+    title: '',
+    rating: '',
+    releaseDate: '',
+    genre: '',
+    director: '',
+    producer: '',
+    poster: null,
+    trailerUrl: '',
+    description: '',
+    year: ''
+  });
 
   const addCastField = () => {
     setCasts([...casts, { id: casts.length + 1, name: '', file: null }]);
@@ -19,9 +32,42 @@ function Form() {
     setCasts(updatedCasts);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
+    const { title, rating, releaseDate, genre, director, producer, poster, trailerUrl, description, year } = movie;
+
+    if (!title || !rating || !releaseDate || !genre || !director || !producer || !poster || !trailerUrl || !description || !year) {
+      alert('Please add all fields');
+      return;
+    }
+
+    const reqBody = new FormData();
+    reqBody.append('title', title);
+    reqBody.append('rating', rating);
+    reqBody.append('releaseDate', releaseDate);
+    reqBody.append('genre', genre);
+    reqBody.append('director', director);
+    reqBody.append('producer', producer);
+    reqBody.append('poster', poster);
+    reqBody.append('trailerUrl', trailerUrl);
+    reqBody.append('description', description);
+    reqBody.append('year', year);
+
+    casts.forEach((cast, index) => {
+      reqBody.append(`casts[${index}][name]`, cast.name);
+      reqBody.append(`casts[${index}][file]`, cast.file);
+    });
+
+    try {
+      const response = await axios.post('your_api_endpoint', reqBody);
+      if (response.status === 200) {
+        setMovie({ title: '', rating: '', releaseDate: '', genre: '', director: '', producer: '', poster: null, trailerUrl: '', description: '', year: '' });
+        setCasts([{ id: 1, name: '', file: null }]);
+        alert('Movie added successfully');
+      }
+    } catch (error) {
+      alert(error.response?.data?.message || 'Server Error');
+    }
   };
 
   return (
@@ -29,132 +75,33 @@ function Form() {
       <div className="card">
         <div className="card-body">
           <h2 className="card-title mb-4">Movie Details</h2>
-          
           <form onSubmit={handleSubmit}>
             <div className="row g-3">
-              {/* Basic Info Section */}
+              {Object.keys(movie).map((key) => (
+                key !== 'poster' && (
+                  <div className="col-md-6" key={key}>
+                    <div className="form-group">
+                      <label className="form-label">{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                      <input
+                        type={key === 'releaseDate' ? 'date' : 'text'}
+                        className="form-control"
+                        value={movie[key]}
+                        onChange={(e) => setMovie({ ...movie, [key]: e.target.value })}
+                      />
+                    </div>
+                  </div>
+                )
+              ))}
               <div className="col-md-6">
                 <div className="form-group">
-                  <label htmlFor="title" className="form-label">Title</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    id="title" 
-                    name="title"
+                  <label className="form-label">Movie Poster</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    onChange={(e) => setMovie({ ...movie, poster: e.target.files[0] })}
                   />
                 </div>
               </div>
-
-              <div className="col-md-12">
-                <div className="form-group">
-                  <label htmlFor="news" className="form-label">News</label>
-                  <textarea 
-                    className="form-control" 
-                    id="news" 
-                    name="news" 
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="rating" className="form-label">Rating</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    id="rating" 
-                    name="rating"
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="journer" className="form-label">Genre</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    id="journer" 
-                    name="journer"
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="releasedate" className="form-label">Release Date</label>
-                  <input 
-                    type="date" 
-                    className="form-control" 
-                    id="releasedate" 
-                    name="releasedate"
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="director" className="form-label">Director</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    id="director" 
-                    name="director"
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="producer" className="form-label">Producer</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    id="producer" 
-                    name="producer"
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="movieyear" className="form-label">Year</label>
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    id="movieyear" 
-                    name="movieyear"
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="trailerlink" className="form-label">Trailer Link</label>
-                  <input 
-                    type="url" 
-                    className="form-control" 
-                    id="trailerlink" 
-                    name="trailerlink"
-                  />
-                </div>
-              </div>
-
-              {/* Movie Poster Section */}
-              <div className="col-md-6">
-                <div className="form-group">
-                  <label htmlFor="movieposter" className="form-label">Movie Poster</label>
-                  <input 
-                    type="file" 
-                    className="form-control" 
-                    id="movieposter" 
-                    name="movieposter"
-                  />
-                </div>
-              </div>
-
-              {/* Cast Section */}
               <div className="col-12">
                 <label className="form-label">Cast</label>
                 {casts.map((cast, index) => (
@@ -177,26 +124,17 @@ function Form() {
                     </div>
                     <div className="col-md-2">
                       {casts.length > 1 && (
-                        <button
-                          type="button"
-                          className="btn btn-danger w-100"
-                          onClick={() => removeCast(index)}
-                        >
+                        <button type="button" className="btn btn-danger w-100" onClick={() => removeCast(index)}>
                           Remove
                         </button>
                       )}
                     </div>
                   </div>
                 ))}
-                <button
-                  type="button"
-                  className="btn btn-secondary mb-3"
-                  onClick={addCastField}
-                >
+                <button type="button" className="btn btn-secondary mb-3" onClick={addCastField}>
                   Add Cast
                 </button>
               </div>
-
               <div className="col-12 text-center">
                 <button type="submit" className="btn btn-primary px-4">
                   Submit
