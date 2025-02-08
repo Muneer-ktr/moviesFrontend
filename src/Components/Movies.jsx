@@ -394,40 +394,10 @@ function Movies() {
       <div style={styles.castSection}>
         <h4 style={styles.castTitle}>Cast</h4>
         <div style={styles.castGrid}>
-          <div style={styles.castItem}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp_e1PcQ3IkLPfURI-ir8u1f0aR2pXQf-I4g&s" alt="Mammootty" style={styles.castImage} />
-            <p style={styles.castName}>Mammootty</p>
-          </div>
-          <div style={styles.castItem}>
-            <img src="https://bhimamovieportal3.netlify.app/images/movies/gayu.jpg" alt="Gayathri" style={styles.castImage} />
-            <p style={styles.castName}>Gayathri</p>
-          </div>
-          <div style={styles.castItem}>
-            <img src="https://pbs.twimg.com/profile_images/1311755779456659456/F4fuC5Qu_400x400.jpg" alt="Gautham Menon" style={styles.castImage} />
-            <p style={styles.castName}>Gautham Menon</p>
-          </div>
-          <div style={styles.castItem}>
-            <img src="https://bhimamovieportal3.netlify.app/images/movies/bhama.jpg" alt="Bhama" style={styles.castImage} />
-            <p style={styles.castName}>Bhama</p>
-          </div>
-          <div style={styles.castItem}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY2of-xtI1ewg3DGnH7VxJicXz2Kfg7txM3g&s" alt="Shine Tom Chacko" style={styles.castImage} />
-            <p style={styles.castName}>Shine Tom Chacko</p>
-          </div>
-          <div style={styles.castItem}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSeHdpL2fh7S6GoQs1N1hg2MK1bj93gr9CZg&s" alt="Neeta Pillai" style={styles.castImage} />
-            <p style={styles.castName}>Neeta Pillai</p>
-          </div>
-        </div>
-      </div>
-
-      <div style={styles.castSection}>
-        <h4 style={styles.castTitle}>Cast</h4>
-        <div style={styles.castGrid}>
           {movie.cast && movie.cast.map((actor, index) => (
             <div key={index} style={styles.castItem}>
               <img
-                src={actor.image}  // Dynamically display actor's image
+                src={`${baseURL}/uploads/${actor.image}`}  // Dynamically display actor's image
                 alt={actor.name}  // Dynamically display actor's name as alt text
                 style={styles.castImage}
               />
