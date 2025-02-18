@@ -1,1 +1,1 @@
-export const baseURL = 'http://localhost:5000'
+export const baseURL = 'https://movies-backend-7-6ar4.onrender.com'
