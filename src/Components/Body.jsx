@@ -12,7 +12,6 @@ function Body() {
     try {
       const response = await allmovies();
       setMovies(response.data);
-      
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
@@ -28,13 +27,6 @@ function Body() {
       <Row className="mb-4">
         <Col xs={12}>
           <Carousel controls={false} interval={2000} indicators={true} pause="hover" className="custom-carousel">
-            <Carousel.Item>
-              <img
-                className="carousel-image"
-                src="https://bhimamovieportal3.netlify.app/images/movies/Bhima%20Slide%205.jpeg"
-                alt="Bhima Movie Poster 1"
-              />
-            </Carousel.Item>
             <Carousel.Item>
               <Link to="/movies">
                 <img
@@ -69,10 +61,10 @@ function Body() {
         </Col>
       </Row>
 
-      {/* Grid Section */}
+      {/* Grid Section with 2 posters per row */}
       <Row className="px-3">
         {movies?.map((item, index) => (
-          <Col key={index} xs={12} sm={6} md={4} className="mb-4">
+          <Col key={index} xs={12} md={6} className="mb-4"> {/* 2 items per row */}
             <div className="image-container">
               <Link to={`/getmoviesbyid/${item._id}`}>
                 <img
