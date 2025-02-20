@@ -3,12 +3,12 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 function Header() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary"  sticky="top">
     <Container>
       <Navbar.Brand href="#home">NILA ENTERTAINMENTS</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ms-auto"> {/* Moves navigation to the left */}
+        <Nav className="ms-auto"> 
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#about">About</Nav.Link>
           <NavDropdown title="Service" id="basic-nav-dropdown">

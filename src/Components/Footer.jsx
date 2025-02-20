@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Footer() {
   const [visible, setVisible] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,25 +24,34 @@ function Footer() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Container styles
-  const containerStyle = {
+  const socialContainerStyle = {
     position: 'fixed',
-    bottom: visible ? '0' : '-100px',
+    bottom: visible ? '50px' : '-100px', 
     left: '0',
     right: '0',
     transition: 'bottom 0.3s ease-in-out',
-    zIndex: 1000,
-    padding: '1rem 0',
+    zIndex: 100,
+    padding: '1rem 0'
   };
 
-  // Inner container styles
+  const copyrightContainerStyle = {
+    position: 'fixed',
+    bottom: '0',
+    left: '0',
+    right: '0',
+    backgroundColor: 'rgba(245, 245, 245, 0.95)',
+    backdropFilter: 'blur(5px)',
+    boxShadow: '0 -1px 5px rgba(0,0,0,0.1)',
+    padding: '10px 0',
+    zIndex: 999
+  };
+
   const innerContainerStyle = {
     maxWidth: '1200px',
     margin: '0 auto',
     padding: '0 15px'
   };
 
-  // Button row styles
   const buttonRowStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -49,7 +59,6 @@ function Footer() {
     gap: '16px'
   };
 
-  // Base button styles
   const baseButtonStyle = {
     width: '40px',
     height: '40px',
@@ -66,13 +75,20 @@ function Footer() {
     boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
   };
 
-  // Button color styles
   const buttonStyles = {
     home: { ...baseButtonStyle, backgroundColor: '#3b5998' },
     whatsapp: { ...baseButtonStyle, backgroundColor: '#25d366' },
     facebook: { ...baseButtonStyle, backgroundColor: '#1877f2' },
     instagram: { ...baseButtonStyle, backgroundColor: '#e4405f' },
     twitter: { ...baseButtonStyle, backgroundColor: '#000000' }
+  };
+
+  const copyrightStyle = {
+    fontSize: '14px',
+    color: '#555',
+    fontWeight: '500',
+    textAlign: 'center',
+    margin: 0
   };
 
   const handleMouseEnter = (e) => {
@@ -88,7 +104,7 @@ function Footer() {
   return (
     <>
       <div style={{ height: '80px' }} />
-      <footer style={containerStyle}>
+      <div style={socialContainerStyle}>
         <div style={innerContainerStyle}>
           <div style={buttonRowStyle}>
             <button 
@@ -136,6 +152,14 @@ function Footer() {
               <i className="fa-brands fa-x-twitter"></i>
             </button>
           </div>
+        </div>
+      </div>
+      
+      <footer style={copyrightContainerStyle}>
+        <div style={innerContainerStyle}>
+          <p style={copyrightStyle}>
+            &copy; {currentYear} NILA ENTERTAINMENTS. All Rights Reserved.
+          </p>
         </div>
       </footer>
     </>
