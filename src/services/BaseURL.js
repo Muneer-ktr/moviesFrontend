@@ -1,1 +1,1 @@
-export const baseURL = 'https://movies-backend-7-6ar4.onrender.com'
+export const baseURL = 'https://backendnew-s4a5.onrender.com'
