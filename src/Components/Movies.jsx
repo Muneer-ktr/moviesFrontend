@@ -5,7 +5,6 @@ import { baseURL } from '../services/BaseURL';
 import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import ads from '../assets/joyalukkas.jpg';
 
-// Custom hook for handling window resize
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -74,6 +73,7 @@ function Movies() {
       margin: '0 auto',
       boxSizing: 'border-box',
       flexDirection: isMobile ? 'column' : 'row',
+      
     },
     sideAd: {
       display: isMobile ? 'none' : 'flex',
@@ -209,10 +209,8 @@ function Movies() {
 
   return (
     <div style={styles.pageContainer}>
-      {/* Only render ads if not mobile */}
       {!isMobile && <AdSection />}
 
-      {/* Main Content */}
       <div style={styles.container}>
         <div>
           <img
@@ -265,7 +263,6 @@ function Movies() {
         </div>
       </div>
 
-      {/* Only render right ads if not mobile */}
       {!isMobile && <AdSection />}
     </div>
   );

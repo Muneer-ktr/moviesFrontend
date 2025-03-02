@@ -22,8 +22,9 @@
     }, []);
 
     return (
+      
+     <>
       <Container fluid>
-        {/* Carousel Section */}
         <Row className="mb-4">
           <Col xs={12}>
             <Carousel controls={false} interval={2000} indicators={true} pause="hover" className="custom-carousel">
@@ -61,10 +62,9 @@
           </Col>
         </Row>
 
-        {/* Grid Section with 2 posters per row */}
         <Row className="px-3">
           {movies?.map((item, index) => (
-            <Col key={index} xs={12} md={6} className="mb-4"> {/* 2 items per row */}
+            <Col key={index} xs={12} md={6} className="mb-4">
               <div className="image-container">
                 <Link to={`/getmoviesbyid/${item._id}`}>
                   <img
@@ -78,6 +78,8 @@
           ))}
         </Row>
       </Container>
+     </>
+    
     );
   }
 
