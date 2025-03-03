@@ -10,7 +10,7 @@ function Footer() {
       const scrolled = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
+
       if (scrolled > 100 || (windowHeight + scrolled) >= documentHeight - 50) {
         setVisible(true);
       } else {
@@ -19,14 +19,14 @@ function Footer() {
     };
 
     handleScroll();
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const socialContainerStyle = {
     position: 'fixed',
-    bottom: visible ? '50px' : '-100px', 
+    bottom: visible ? '50px' : '-100px',
     left: '0',
     right: '0',
     transition: 'bottom 0.3s ease-in-out',
@@ -39,9 +39,9 @@ function Footer() {
     bottom: '0',
     left: '0',
     right: '0',
-    backgroundColor: 'rgba(245, 245, 245, 0.95)',
+    backgroundColor: 'rgba(0, 0, 0, 0.95)', // Black background
     backdropFilter: 'blur(5px)',
-    boxShadow: '0 -1px 5px rgba(0,0,0,0.1)',
+    boxShadow: '0 -1px 5px rgba(0,0,0,0.3)',
     padding: '10px 0',
     zIndex: 999
   };
@@ -85,7 +85,7 @@ function Footer() {
 
   const copyrightStyle = {
     fontSize: '14px',
-    color: '#555',
+    color: '#fff', // White text
     fontWeight: '500',
     textAlign: 'center',
     margin: 0
@@ -103,11 +103,10 @@ function Footer() {
 
   return (
     <>
-      <div style={{ height: '80px' }} />
       <div style={socialContainerStyle}>
         <div style={innerContainerStyle}>
           <div style={buttonRowStyle}>
-            <button 
+            <button
               style={buttonStyles.home}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -115,8 +114,8 @@ function Footer() {
             >
               <i className="fa-solid fa-house"></i>
             </button>
-            
-            <button 
+
+            <button
               style={buttonStyles.whatsapp}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -124,8 +123,8 @@ function Footer() {
             >
               <i className="fa-brands fa-whatsapp"></i>
             </button>
-            
-            <button 
+
+            <button
               style={buttonStyles.facebook}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -133,8 +132,8 @@ function Footer() {
             >
               <i className="fab fa-facebook-f"></i>
             </button>
-            
-            <button 
+
+            <button
               style={buttonStyles.instagram}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -142,8 +141,8 @@ function Footer() {
             >
               <i className="fab fa-instagram"></i>
             </button>
-            
-            <button 
+
+            <button
               style={buttonStyles.twitter}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -154,11 +153,11 @@ function Footer() {
           </div>
         </div>
       </div>
-      
+
       <footer style={copyrightContainerStyle}>
         <div style={innerContainerStyle}>
           <p style={copyrightStyle}>
-            &copy; {currentYear} NILA ENTERTAINMENTS. All Rights Reserved.
+            &copy; {currentYear} CINITRENDS. All Rights Reserved.
           </p>
         </div>
       </footer>

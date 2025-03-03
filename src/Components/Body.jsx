@@ -25,8 +25,8 @@
       
      <>
       <Container fluid>
-        <Row className="mb-4">
-          <Col xs={12}>
+        <Row className="mb-4 justify-content-center ">
+          <Col xs={9}>
             <Carousel controls={false} interval={2000} indicators={true} pause="hover" className="custom-carousel">
               <Carousel.Item>
                 <Link to="/movies">

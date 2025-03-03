@@ -28,7 +28,7 @@ function Movies() {
   const [movie, setMovie] = useState(null);
   const { id } = useParams();
   const { width } = useWindowSize();
-  const isMobile = width <= 992; // Define mobile breakpoint
+  const isMobile = width <= 992; 
 
   const getmoviesbyid = async () => {
     try {
@@ -73,6 +73,8 @@ function Movies() {
       margin: '0 auto',
       boxSizing: 'border-box',
       flexDirection: isMobile ? 'column' : 'row',
+      backgroundColor: 'black',
+      color: 'white',  
       
     },
     sideAd: {
@@ -121,7 +123,7 @@ function Movies() {
     },
     infoText: {
       margin: '8px 0',
-      color: '#4a4a4a',
+      color: 'white',  
       fontSize: isMobile ? '0.9rem' : '1rem',
     },
     playTrailer: {
@@ -142,7 +144,7 @@ function Movies() {
       fontSize: isMobile ? '1.3rem' : '1.5rem',
       fontWeight: '600',
       marginBottom: '20px',
-      color: '#1a1a1a',
+      color: 'white',  
       textTransform: 'capitalize',
       textAlign: 'center',
     },
@@ -167,7 +169,7 @@ function Movies() {
     },
     castName: {
       fontWeight: '600',
-      color: '#2a2a2a',
+      color: 'white',  
       marginTop: '8px',
       fontSize: isMobile ? '0.9rem' : '1rem',
     },
@@ -186,7 +188,7 @@ function Movies() {
     },
     newsContent: {
       lineHeight: '1.8',
-      color: '#2a2a2a',
+      color: 'white',  
       fontSize: isMobile ? '1rem' : '1.1rem',
       textShadow: '1px 1px 2px rgba(0, 0, 0, 0.1)',
       wordWrap: 'break-word',
