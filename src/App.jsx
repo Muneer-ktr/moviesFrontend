@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import React from 'react'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
@@ -7,16 +7,23 @@ import Movies from './Components/Movies'
 import Form from './Components/Form';
 
 function App() {
+  const location = useLocation();
+
+  const hideHeader = location.pathname.startsWith('/getmoviesbyid');
+
   return (
     <div>
 
-      <Header/>
+      {!hideHeader && <Header />}
+
       <Routes>
-        <Route path='/' element={<Body/>}/>
-        <Route path='/getmoviesbyid/:id' element={<Movies/>}/>
-        <Route path='/form' element={<Form/>}/>
-      </Routes>     
-      <Footer/>
+        <Route path='/' element={<Body />} />
+        <Route path='/getmoviesbyid/:id' element={<Movies />} />
+        <Route path='/form' element={<Form />} />
+      </Routes>
+
+      <Footer />
+      
     </div>
   )
 }
